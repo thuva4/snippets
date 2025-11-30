@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build -w packages/core && npm run build -w packages/node && npm run build -w packages/browser",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run --exclude test/integration/**",
     "test:integration": "tsx test/integration/index.test.ts",
