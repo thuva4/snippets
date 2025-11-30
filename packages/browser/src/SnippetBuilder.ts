@@ -10,7 +10,6 @@ export class BrowserSnippetBuilder extends BaseSnippetBuilder {
     }
 
     async toHTML(): Promise<string> {
-        console.log(this.options)
         if (!this.options.code && (!this.options.columns || this.options.columns.length === 0)) {
             throw new Error('Code content is required');
         }

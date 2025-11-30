@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import './styles/App.css';
 import { useSnippet } from './hooks/useSnippet';
 import { ControlPanel } from './components/ControlPanel';
+import { ResizeOverlay } from './components/ResizeOverlay';
 import { toPng } from 'html-to-image';
 import { CodeColumn, SnippetOptions } from './types';
 import { EditorOverlay } from './components/EditorOverlay';
@@ -24,6 +25,8 @@ function App() {
 
     const [activePaneIndex, setActivePaneIndex] = useState<number | null>(null);
     const [activePaneRect, setActivePaneRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
+    const [windowWidth, setWindowWidth] = useState<number | null>(null);
+    const [columnWidths, setColumnWidths] = useState<Record<number, number>>({});
 
     const updateOption = (key: keyof SnippetOptions, value: any) => {
         setOptions((prev) => ({ ...prev, [key]: value }));
@@ -110,6 +113,19 @@ function App() {
         setActivePaneRect(null);
     };
 
+    const handleWindowResize = useCallback((width: number) => {
+        setWindowWidth(width);
+    }, []);
+
+    const handleColumnResize = useCallback((columnIndex: number, width: number) => {
+        setColumnWidths(prev => ({ ...prev, [columnIndex]: width }));
+    }, []);
+
+    const handleResizeEnd = useCallback(() => {
+        // Trigger re-render after resize completes
+        // This is debounced - only happens when user stops dragging
+    }, []);
+
     useEffect(() => {
         const handleResize = () => {
             if (activePaneIndex !== null && windowRef.current) {
@@ -126,8 +142,19 @@ function App() {
                 <div className="window-container" ref={windowRef} style={{ background: 'transparent', boxShadow: 'none', border: 'none', position: 'relative', overflow: 'visible' }}>
 
                     <UnifiedSnippetDisplay
-                        columns={useMemo(() => columns, [columns])}
-                        options={useMemo(() => options, [options])}
+                        columns={useMemo(() => {
+                            return columns.map((col, index) => ({
+                                ...col,
+                                width: index === columns.length - 1 ? undefined : columnWidths[index]
+                            }));
+                        }, [columns, columnWidths])}
+                        options={useMemo(() => ({
+                            ...options,
+                            ...(windowWidth !== null && {
+                                width: windowWidth,
+                                maxWidth: undefined
+                            })
+                        }), [options, windowWidth])}
                         onPaneClick={handlePaneClick}
                     />
 
@@ -156,6 +183,16 @@ function App() {
                             + Add Pane
                         </button>
                     )}
+
+                    <ResizeOverlay
+                        containerRef={windowRef}
+                        onWindowResize={handleWindowResize}
+                        onColumnResize={handleColumnResize}
+                        onResizeEnd={handleResizeEnd}
+                        columnCount={columns.length}
+                        windowWidth={windowWidth}
+                        columnWidths={columnWidths}
+                    />
                 </div>
 
                 <ControlPanel
@@ -179,7 +216,8 @@ function UnifiedSnippetDisplay({ columns, options, onPaneClick }: { columns: Cod
             code: c.code,
             language: c.language,
             fileName: c.fileName,
-            highlightLines: c.highlightLines
+            highlightLines: c.highlightLines,
+            width: c.width
         }))
     }), [options, columns]);
 

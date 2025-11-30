@@ -6,6 +6,7 @@ export interface CodeColumn {
     language: BundledLanguage;
     fileName?: string;
     highlightLines?: string;
+    width?: number;
 }
 
 export interface SnippetOptions {

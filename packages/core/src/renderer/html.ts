@@ -20,7 +20,7 @@ function getContainerStyles(options: SnippetOptions, theme: ThemeConfig): string
     return styles.filter(Boolean).join('; ');
 }
 
-function getWindowStyles(theme: ThemeConfig, hasBackground: boolean): string {
+function getWindowStyles(theme: ThemeConfig, hasBackground: boolean, options?: SnippetOptions): string {
     const styles = [
         `background: ${theme.windowBg}`,
         `border: 1px solid ${theme.windowBorder}`,
@@ -31,7 +31,7 @@ function getWindowStyles(theme: ThemeConfig, hasBackground: boolean): string {
         'flex-direction: column',
         'min-width: 300px',
         'min-height: 200px',
-        'width: 100%',
+        options?.width ? `width: ${options.width}px` : 'width: 100%',
     ];
     return styles.join('; ');
 }
@@ -83,7 +83,8 @@ async function generatePaneHTML(
     options: SnippetOptions,
     fileName?: string,
     highlightLines?: string,
-    isLast: boolean = true
+    isLast: boolean = true,
+    width?: number
 ): Promise<string> {
     const codeLines = await highlightCode(code, language, theme);
     const codeHTML = generateCodeHTML(codeLines, {
@@ -95,7 +96,7 @@ async function generatePaneHTML(
     const paneStyles = [
         'display: flex',
         'flex-direction: column',
-        'flex: 1',
+        width ? `flex: none; width: ${width}px` : 'flex: 1',
         'min-width: 0',
         !isLast ? `border-right: 1px solid ${themeConfig.windowBorder}` : '',
     ].filter(Boolean).join('; ');
@@ -149,7 +150,7 @@ export async function generateSnippetHTML(options: SnippetOptions): Promise<stri
     if (noWindow) {
         if (columns.length > 0) {
             const panes = await Promise.all(columns.map((col, index) =>
-                generatePaneHTML(col.code, col.language, theme, themeConfig, options, col.fileName, col.highlightLines, index === columns.length - 1)
+                generatePaneHTML(col.code, col.language, theme, themeConfig, options, col.fileName, col.highlightLines, index === columns.length - 1, col.width)
             ));
             return `<div style="display: flex; flex-direction: row; flex: 1;">${panes.join('')}</div>`;
         }
@@ -172,7 +173,7 @@ export async function generateSnippetHTML(options: SnippetOptions): Promise<stri
 
     if (columns.length > 0) {
         const panes = await Promise.all(columns.map((col, index) =>
-            generatePaneHTML(col.code, col.language, theme, themeConfig, options, col.fileName, col.highlightLines, index === columns.length - 1)
+            generatePaneHTML(col.code, col.language, theme, themeConfig, options, col.fileName, col.highlightLines, index === columns.length - 1, col.width)
         ));
         contentHTML = `<div style="display: flex; flex-direction: row; width: 100%; flex: 1;">${panes.join('')}</div>`;
     } else {
@@ -189,7 +190,7 @@ export async function generateSnippetHTML(options: SnippetOptions): Promise<stri
 
     return `
 <div class="snippet-container" style="${getContainerStyles({ ...options, padding, margin, background }, themeConfig)}">
-    <div class="snippet-window" style="${getWindowStyles(themeConfig, background)}">
+    <div class="snippet-window" style="${getWindowStyles(themeConfig, background, options)}">
         <div class="snippet-header" style="${getHeaderStyles(themeConfig)}">
             ${getControlsHTML(themeConfig)}
             ${(!columns.length && fileName) ? `<div style="color: ${themeConfig.titleColor}; font-size: 13px; font-weight: 500;">${fileName}</div>` : '<div></div>'}

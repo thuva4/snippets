@@ -1,0 +1,77 @@
+.resize-handle {
+    position: absolute;
+    z-index: 200;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.resize-handle-horizontal {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    cursor: ew-resize;
+    background: transparent;
+}
+
+.resize-handle-horizontal::after {
+    content: '';
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: none;
+}
+
+.resize-handle-horizontal:hover::after {
+    background: rgba(255, 255, 255, 0.3);
+    height: 50px;
+}
+
+.resize-handle-horizontal.dragging::after {
+    background: rgba(102, 126, 234, 0.9);
+    height: 70px;
+}
+
+.resize-handle-vertical {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    cursor: ew-resize;
+    background: transparent;
+}
+
+.resize-handle-vertical::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: none;
+}
+
+.resize-handle-vertical:hover::after {
+    background: rgba(255, 255, 255, 0.3);
+    height: 50px;
+}
+
+.resize-handle-vertical.dragging::after {
+    background: rgba(102, 126, 234, 0.9);
+    height: 70px;
+}
+
+/* Prevent text selection during drag */
+body:has(.resize-handle.dragging) {
+    user-select: none;
+    cursor: ew-resize !important;
+}

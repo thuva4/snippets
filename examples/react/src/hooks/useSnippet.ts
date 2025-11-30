@@ -34,6 +34,7 @@ export function useSnippet(code: string, options: SnippetOptions) {
                 if (options?.showLineNumbers !== undefined) builder.lineNumbers(options.showLineNumbers);
                 if (options?.highlightLines !== undefined) builder.highlightLines(options.highlightLines || '');
                 if (options?.noWindow !== undefined) builder.noWindow(options.noWindow);
+                if (options?.width !== undefined) builder.width(options.width);
                 if (options?.maxWidth !== undefined) builder.maxWidth(options.maxWidth);
 
                 const result = await builder.toHTML();
