@@ -22,8 +22,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build Packages
         run: npm run build --workspaces
+
+      - name: Build React Example
+        run: |
+          cd examples/react
+          npm install
+          npm run build
 
       - name: Run tests
         run: npm run test

@@ -11,6 +11,17 @@
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
-        "composite": true
+        "composite": true,
+        "paths": {
+            "@thuva4/snippets-core": [
+                "./core/src/index.ts"
+            ],
+            "@thuva4/snippets-node": [
+                "./node/src/index.ts"
+            ],
+            "@thuva4/snippets-browser": [
+                "./browser/src/index.ts"
+            ]
+        }
     }
 }
