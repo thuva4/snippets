@@ -13,7 +13,7 @@ export {
     listPresets,
     hasPreset,
     unregisterPreset,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 export type {
     Config,
@@ -34,7 +34,7 @@ export type {
     AnnotationConfig,
     EnhancedCodeConfig,
     PresetConfig,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 export {
     type ThemeConfig,
@@ -45,7 +45,7 @@ export {
     listThemes,
     unregisterTheme,
     hasTheme,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 export {
     defaultTheme,
@@ -61,14 +61,14 @@ export {
     draculaTheme,
     monokaiTheme,
     nordTheme,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 export type {
     Plugin,
     PluginHooks,
     ThemePlugin,
     AnyPlugin,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 export {
     escapeHtml,
@@ -86,7 +86,7 @@ export {
     generateLineNumberHTML,
     generateAnnotationHTML,
     getHighlightStyle,
-} from '@snippets/core';
+} from '@thuva4/snippets-core';
 
 
 

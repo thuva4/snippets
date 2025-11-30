@@ -10,7 +10,7 @@ export function useSnippet(code: string, options: SnippetOptions) {
         const timer = setTimeout(async () => {
             try {
                 // @ts-ignore
-                const { createSnippet } = await import('../../../../packages/browser/src/index.js');
+                const { createSnippet } = await import('@thuva4/snippets-browser');
 
                 const windowTheme = options?.windowTheme || (typeof options.theme === 'string' ? options.theme : 'default');
 

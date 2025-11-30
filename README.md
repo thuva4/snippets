@@ -5,9 +5,9 @@ Code snippet images with customizable themes and layouts.
 ## Installation
 
 ```bash
-npm install @snippets/node
+npm install @thuva4/snippets-node
 # or for browser usage
-npm install @snippets/browser
+npm install @thuva4/snippets-browser
 ```
 
 ## Quick Start
@@ -15,7 +15,7 @@ npm install @snippets/browser
 ### Builder API
 
 ```typescript
-import { createSnippet } from '@snippets/node';
+import { createSnippet } from '@thuva4/snippets-node';
 
 await createSnippet()
   .code('console.log("Hello, World!");')
@@ -32,7 +32,7 @@ await createSnippet()
 ### Builder API
 
 ```typescript
-import { createSnippet, setGlobalDefaults } from '@snippets/node';
+import { createSnippet, setGlobalDefaults } from '@thuva4/snippets-node';
 
 // Create snippet with builder
 const snippet = createSnippet()
@@ -75,7 +75,7 @@ await createSnippet()
 You can register your own custom themes:
 
 ```typescript
-import { registerTheme, createSnippet } from '@snippets/node';
+import { registerTheme, createSnippet } from '@thuva4/snippets-node';
 
 // Register a custom theme
 registerTheme('cyberpunk', {
@@ -106,7 +106,7 @@ The library supports fine-grained style options for advanced control:
 ### Padding Per Side
 
 ```typescript
-import { paddingToCSS } from '@snippets/core';
+import { paddingToCSS } from '@thuva4/snippets-core';
 
 // Custom padding for each side
 const padding = {
@@ -122,7 +122,7 @@ const css = paddingToCSS(padding); // "32px 24px 32px 24px"
 ### Custom Backgrounds
 
 ```typescript
-import { backgroundToCSS } from '@snippets/core';
+import { backgroundToCSS } from '@thuva4/snippets-core';
 
 // Gradient background
 const gradient = {
@@ -137,7 +137,7 @@ const css = backgroundToCSS(gradient);
 ### Shadow Customization
 
 ```typescript
-import { shadowToCSS } from '@snippets/core';
+import { shadowToCSS } from '@thuva4/snippets-core';
 
 const shadow = {
   offsetX: 0,
@@ -153,7 +153,7 @@ const css = shadowToCSS(shadow);
 ### Border Styling
 
 ```typescript
-import { borderToCSS, borderRadiusToCSS } from '@snippets/core';
+import { borderToCSS, borderRadiusToCSS } from '@thuva4/snippets-core';
 
 const border = {
   width: 2,

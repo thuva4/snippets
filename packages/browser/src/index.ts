@@ -1,5 +1,5 @@
-export type { SnippetOptions } from '@snippets/core';
+export type { SnippetOptions } from '@thuva4/snippets-core';
 
 export { BrowserSnippetBuilder, createSnippet } from './SnippetBuilder.js';
 
-export * from '@snippets/core';
+export * from '@thuva4/snippets-core';

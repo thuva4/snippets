@@ -1,4 +1,4 @@
-import { generateSnippetHTML, SnippetOptions } from '@snippets/core';
+import { generateSnippetHTML, SnippetOptions } from '@thuva4/snippets-core';
 import { BrowserManager } from './BrowserManager.js';
 import fs from 'fs/promises';
 

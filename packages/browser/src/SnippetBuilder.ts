@@ -1,5 +1,5 @@
-import { BaseSnippetBuilder, SnippetOptions } from '@snippets/core';
-export type { SnippetOptions } from '@snippets/core';
+import { BaseSnippetBuilder, SnippetOptions } from '@thuva4/snippets-core';
+export type { SnippetOptions } from '@thuva4/snippets-core';
 
 /**
  * Returns HTML output.
@@ -15,7 +15,7 @@ export class BrowserSnippetBuilder extends BaseSnippetBuilder {
             throw new Error('Code content is required');
         }
 
-        const { generateSnippetHTML } = await import('@snippets/core');
+        const { generateSnippetHTML } = await import('@thuva4/snippets-core');
 
         return generateSnippetHTML(this.options as SnippetOptions);
     }

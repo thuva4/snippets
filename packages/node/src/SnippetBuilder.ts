@@ -1,4 +1,4 @@
-import { SnippetOptions, BaseSnippetBuilder } from '@snippets/core';
+import { BaseSnippetBuilder, SnippetOptions } from '@thuva4/snippets-core';
 import { generateImage } from './renderer.js';
 
 export class SnippetBuilder extends BaseSnippetBuilder {

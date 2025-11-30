@@ -1,16 +1,19 @@
 {
-    "name": "@snippets/browser",
-    "version": "1.0.0",
+    "name": "@thuva4/snippets-browser",
+    "version": "0.0.1",
     "description": "Browser implementation for snippets",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
     "type": "module",
     "scripts": {
         "build": "tsc",
         "test": "vitest run"
     },
     "dependencies": {
-        "@snippets/core": "*"
+        "@thuva4/snippets-core": "*"
     },
     "devDependencies": {
         "typescript": "^5.9.3",

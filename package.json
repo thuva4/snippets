@@ -2,16 +2,19 @@
   "name": "snippets-monorepo",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "vitest run --exclude test/integration/**",
     "test:integration": "tsx test/integration/index.test.ts",
-    "clean": "rm -rf dist test-output packages/*/dist"
+    "clean": "rm -rf dist test-output packages/*/dist",
+    "release": "npx changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@types/node": "^24.10.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",

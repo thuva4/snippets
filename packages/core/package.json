@@ -1,9 +1,12 @@
 {
-    "name": "@snippets/core",
-    "version": "1.0.0",
+    "name": "@thuva4/snippets-core",
+    "version": "0.0.1",
     "description": "Core logic and types for snippets",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
     "type": "module",
     "scripts": {
         "build": "tsc",
