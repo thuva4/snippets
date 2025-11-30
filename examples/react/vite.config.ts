@@ -7,7 +7,7 @@ export default defineConfig({
         react(),
         viteCompression()
     ],
-    base: '/demo-react/',
+    base: '/',
     server: {
         port: 3001,
     },
