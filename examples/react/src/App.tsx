@@ -122,12 +122,6 @@ function App() {
 
     return (
         <div className="app">
-            {/* Header */}
-            <div className="header centered">
-                <h1>
-                    <span className="emoji">✨</span>
-                </h1>
-            </div>
             <div className="content centered-content">
                 <div className="window-container" ref={windowRef} style={{ background: 'transparent', boxShadow: 'none', border: 'none', position: 'relative', overflow: 'visible' }}>
 
@@ -164,16 +158,16 @@ function App() {
                     )}
                 </div>
 
-                <div className="download-section">
-                    <button onClick={handleDownload} className="btn-primary download-btn">
-                        Download
-                    </button>
-                </div>
-
-                <div className="controls-section">
-                    <ControlPanel options={options} onOptionChange={updateOption} />
-                </div>
+                <ControlPanel
+                    options={options}
+                    onOptionChange={updateOption}
+                    onDownload={handleDownload}
+                />
             </div>
+
+            <footer className="app-footer">
+                <p>© 2025 Thuvarakan Tharmarajasingam. All rights reserved.</p>
+            </footer>
         </div>
     );
 }
