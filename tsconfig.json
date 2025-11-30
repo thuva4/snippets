@@ -9,7 +9,18 @@
         "skipLibCheck": true,
         "outDir": "./dist",
         "rootDir": "./src",
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "paths": {
+            "@thuva4/snippets-core": [
+                "./packages/core/src/index.ts"
+            ],
+            "@thuva4/snippets-node": [
+                "./packages/node/src/index.ts"
+            ],
+            "@thuva4/snippets-browser": [
+                "./packages/browser/src/index.ts"
+            ]
+        }
     },
     "include": [
         "src/**/*"
