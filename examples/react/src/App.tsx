@@ -180,7 +180,7 @@ function App() {
                             className="btn-add-pane-floating"
                             title="Add new pane"
                         >
-                            + Add Pane
+                            +
                         </button>
                     )}
 
@@ -244,7 +244,12 @@ function UnifiedSnippetDisplay({ columns, options, onPaneClick }: { columns: Cod
                 onClick={handleClick}
                 style={{ cursor: 'pointer', opacity: isLoading ? 0.7 : 1, transition: 'opacity 0.2s' }}
             />
-            {isLoading && !html && <div className="loading-placeholder">Generating snippet...</div>}
+            {isLoading && !html && (
+                <div className="loading-placeholder">
+                    <div className="loading-spinner" />
+                    <span>Generating snippet...</span>
+                </div>
+            )}
         </div>
     );
 }

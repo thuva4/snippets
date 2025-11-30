@@ -46,7 +46,7 @@ export function useSnippet(code: string, options: SnippetOptions) {
             } finally {
                 setIsLoading(false);
             }
-        }, 500);
+        }, 50);
 
         return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
