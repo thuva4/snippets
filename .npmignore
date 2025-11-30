@@ -1,0 +1,39 @@
+# Test files and outputs
+test/
+test-output/
+*.test.ts
+*.spec.ts
+
+# Examples (optional - consider keeping minimal examples)
+# examples/
+
+# Source files (TypeScript compilation outputs are in dist/)
+src/
+tsconfig.json
+
+# macOS and editor files
+.DS_Store
+**/.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Development files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (optional - consider what to include/exclude)
+CONTRIBUTING.md
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local

@@ -1,0 +1,22 @@
+{
+    "name": "@snippets/core",
+    "version": "1.0.0",
+    "description": "Core logic and types for snippets",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "zod": "^4.1.12",
+        "shiki": "^3.15.0",
+        "common-types": "^1.33.2",
+        "@fontsource/roboto": "^5.2.9"
+    },
+    "devDependencies": {
+        "typescript": "^5.9.3",
+        "@types/node": "^24.10.1"
+    }
+}

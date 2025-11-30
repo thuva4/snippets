@@ -1,0 +1,481 @@
+.app {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Centered header */
+.header.centered {
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Download Button */
+.download-btn {
+    background: #e6e6e6;
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-btn:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Controls section */
+.controls-section {
+    width: 100%;
+    max-width: 600px;
+}
+
+.header.centered h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+}
+
+/* Centered content */
+.content.centered-content {
+    max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Unified Window Container */
+.window-container {
+    background: #1e1e1e;
+    /* Default dark background */
+    border: 1px solid #333;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: auto;
+    /* Dynamic width */
+    min-width: 800px;
+    /* Minimum width */
+    max-width: 95vw;
+    /* Max width relative to viewport */
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+/* Window Header (Traffic Lights) */
+.window-header {
+    height: 44px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    justify-content: space-between;
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 8px;
+}
+
+.traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.traffic-light.red {
+    background-color: #ff5f56;
+}
+
+.traffic-light.yellow {
+    background-color: #ffbd2e;
+}
+
+.traffic-light.green {
+    background-color: #27c93f;
+}
+
+.btn-add-tab {
+    background: transparent;
+    border: 1px solid #444;
+    color: #888;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.btn-add-tab:hover {
+    background: #333;
+    color: #fff;
+    border-color: #666;
+}
+
+/* Snippet Panes Container */
+.snippet-panes {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Individual Snippet Pane */
+.snippet-pane {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #333;
+}
+
+.snippet-pane:last-child {
+    border-right: none;
+}
+
+/* Pane Header (Filename) */
+.pane-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid #333;
+    background: #1e1e1e;
+}
+
+.filename-input {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+}
+
+.filename-input:focus {
+    color: #fff;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.btn-close:hover {
+    color: #ff5f56;
+}
+
+/* Pane Body (Code) */
+.pane-body {
+    position: relative;
+    min-height: 320px;
+    /* Reasonable initial height */
+    background: #0d0d0d;
+    flex: 1;
+    /* Grow to fill available space (matching tallest column) */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure content inside body fills it */
+.pane-body .snippet-display {
+    flex: 1;
+    height: 100%;
+}
+
+/* Pane Footer (Controls) */
+.pane-footer {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-top: 1px solid #333;
+    background: #1e1e1e;
+    gap: 12px;
+    margin-top: auto;
+    /* Push to bottom if body doesn't fill */
+}
+
+.control-item {
+    flex: 1;
+}
+
+.language-select,
+.highlight-input {
+    width: 100%;
+    background: #252526;
+    border: 1px solid #333;
+    color: #aaa;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    outline: none;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.language-select:focus,
+.highlight-input:focus {
+    border-color: #555;
+    color: #fff;
+}
+
+/* Hide the default snippet-tabs styles since we replaced them */
+.snippet-tabs {
+    display: none;
+}
+
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.light.red {
+    background: #ff5f56;
+}
+
+.light.yellow {
+    background: #ffbd2e;
+}
+
+.light.green {
+    background: #27c93f;
+}
+
+.window-title {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-family: var(--font-sans);
+}
+
+.btn-add-column-header {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-column-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+}
+
+/* Split Panes */
+.split-panes {
+    display: flex;
+}
+
+.pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 400px;
+}
+
+.vertical-divider {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-color);
+    z-index: 10;
+}
+
+/* Pane Header */
+.pane-header {
+    height: 40px;
+    background: var(--color-neutral-900);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+}
+
+.pane-filename {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-family: 'SF Mono', Monaco, monospace;
+    outline: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.pane-filename:hover,
+.pane-filename:focus {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-close-pane {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-close-pane:hover {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+}
+
+/* Pane Footer */
+.pane-footer {
+    height: 40px;
+    background: var(--color-neutral-900);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.language-selector {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-sans);
+}
+
+.language-selector:hover,
+.language-selector:focus {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    outline: none;
+}
+
+.highlight-input {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+    width: 140px;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+}
+
+.highlight-input:hover,
+.highlight-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    outline: none;
+}
+
+.highlight-input::placeholder {
+    color: var(--color-neutral-600);
+}
+
+/* Global Actions */
+.global-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-download-combined {
+    padding: 10px 24px;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+}
+
+.btn-download-combined:hover {
+    background: var(--color-neutral-300);
+    transform: translateY(-1px);
+}
+
+.btn-add-pane-floating {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 10;
+}
+
+.btn-add-pane-floating:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Force code to expand container */
+/* Avoid  */

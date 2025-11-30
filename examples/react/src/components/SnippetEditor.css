@@ -1,0 +1,130 @@
+.snippet-editor-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+}
+
+.snippet-display {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 16px;
+    overflow: auto;
+}
+
+.snippet-html {
+    transition: opacity 0.3s;
+    cursor: pointer;
+    white-space: pre;
+}
+
+.snippet-html.hidden {
+    visibility: hidden;
+}
+
+.snippet-html.loading {
+    opacity: 0.6;
+}
+
+.snippet-html>* {
+    white-space: pre;
+}
+
+.code-editor-overlay {
+    position: absolute;
+    inset: 16px;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    padding: 24px;
+    background: rgba(30, 30, 30, 0.98);
+    border: 2px solid #8b5cf6;
+    border-radius: 8px;
+    color: #e6e6e6;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    z-index: 10;
+    word-break: break-word;
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #333;
+    border-top-color: #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.snippet-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px;
+    background: #252525;
+    border-top: 1px solid #1a1a1a;
+}
+
+.btn-control {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-download {
+    background: #8b5cf6;
+    color: white;
+}
+
+.btn-download:hover {
+    background: #7c3aed;
+    transform: translateY(-1px);
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    border: 1px solid #333;
+}
+
+.btn-copy:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #8b5cf6;
+}
+
+.btn-remove-snippet {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+.btn-remove-snippet:hover {
+    background: rgba(255, 107, 107, 0.2);
+}

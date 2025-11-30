@@ -1,0 +1,28 @@
+{
+    "name": "@snippets/node",
+    "version": "1.0.0",
+    "description": "Node.js implementation for snippets",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "bin": {
+        "snippets": "./dist/cli/index.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@snippets/core": "*",
+        "commander": "^14.0.2",
+        "ora": "^9.0.0",
+        "puppeteer": "^24.31.0",
+        "playwright": "^1.56.1",
+        "@resvg/resvg-js": "^2.6.2",
+        "chalk": "^5.6.2"
+    },
+    "devDependencies": {
+        "typescript": "^5.9.3",
+        "@types/node": "^24.10.1"
+    }
+}
