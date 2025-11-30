@@ -126,7 +126,6 @@ function App() {
             <div className="header centered">
                 <h1>
                     <span className="emoji">✨</span>
-                    Snippets
                 </h1>
             </div>
             <div className="content centered-content">
