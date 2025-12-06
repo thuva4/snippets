@@ -1,6 +1,11 @@
 {
     "name": "@thuva4/snippets-node",
-    "version": "0.0.4",
+    "files": [
+        "dist",
+        "package.json",
+        "README.md"
+    ],
+    "version": "0.0.5",
     "description": "Node.js implementation for snippets",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
