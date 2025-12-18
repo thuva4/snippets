@@ -18,10 +18,20 @@ function initializeBuiltInThemes() {
 
 initializeBuiltInThemes();
 
+const RESERVED_NAMES = new Set(['__proto__', 'constructor', 'prototype']);
+
+function validateThemeName(name: string): void {
+    if (RESERVED_NAMES.has(name)) {
+        throw new Error(`Invalid theme name: "${name}" is reserved`);
+    }
+}
+
 export function registerTheme(
     name: string,
     theme: ThemePlugin | ThemeConfig
 ): void {
+    validateThemeName(name);
+
     const plugin: ThemePlugin = isThemePlugin(theme)
         ? theme
         : {
@@ -39,10 +49,14 @@ export function getRegisteredTheme(
     darkMode: boolean = true
 ): ThemeConfig {
     const plugin = themeRegistry.get(name);
+    const fallback = themeRegistry.get('default');
 
     if (!plugin) {
         console.warn(`Theme "${name}" not found, using default theme`);
-        return themeRegistry.get('default')!.config;
+        if (!fallback) {
+            throw new Error('Theme registry corrupted: default theme missing');
+        }
+        return fallback.config;
     }
 
     if (plugin.variants) {
@@ -62,6 +76,10 @@ export function listThemes(): string[] {
 }
 
 export function unregisterTheme(name: string): boolean {
+    if (name === 'default') {
+        console.warn('Cannot unregister the default theme');
+        return false;
+    }
     return themeRegistry.delete(name);
 }
 
@@ -69,6 +87,12 @@ export function hasTheme(name: string): boolean {
     return themeRegistry.has(name);
 }
 
-function isThemePlugin(obj: any): obj is ThemePlugin {
-    return obj && typeof obj === 'object' && obj.type === 'theme' && obj.config;
+function isThemePlugin(obj: unknown): obj is ThemePlugin {
+    return (
+        typeof obj === 'object' &&
+        obj !== null &&
+        'type' in obj &&
+        obj.type === 'theme' &&
+        'config' in obj
+    );
 }

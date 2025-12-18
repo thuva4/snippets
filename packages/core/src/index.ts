@@ -77,7 +77,7 @@ export type {
 } from './plugins/types.js';
 
 export { escapeHtml, generateCodeHTML } from './utils/html.js';
-export { highlightCode, type ThemeInput } from './utils/highlighter.js';
+export { highlightCode, _resetHighlighter, type ThemeInput } from './utils/highlighter.js';
 export { parseMarkdown, parseMarkdownWithSeparators } from './utils/markdown.js';
 export {
     paddingToCSS,

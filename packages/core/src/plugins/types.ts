@@ -16,7 +16,7 @@ export interface PluginHooks {
 export interface RenderContext {
     code: string;
     language: string;
-    options: any;
+    options: Record<string, unknown>;
 }
 
 export interface ThemePlugin extends Plugin {

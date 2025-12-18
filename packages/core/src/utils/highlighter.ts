@@ -13,13 +13,21 @@ async function getHighlighter() {
     return highlighterPromise;
 }
 
+export function _resetHighlighter(): void {
+    highlighterPromise = null;
+}
+
 export type ThemeInput = BundledTheme | ThemeRegistration | ThemeRegistrationRaw | UnifiedTheme;
 
 export async function highlightCode(code: string, lang: BundledLanguage, theme: ThemeInput = 'github-dark') {
     const highlighter = await getHighlighter();
 
     if (!highlighter.getLoadedLanguages().includes(lang)) {
-        await highlighter.loadLanguage(lang);
+        try {
+            await highlighter.loadLanguage(lang);
+        } catch {
+            console.warn(`Language "${lang}" not found, falling back to plaintext`);
+        }
     }
 
     const themeName = typeof theme === 'string' ? theme : (theme.name || 'custom-theme');
@@ -30,13 +38,13 @@ export async function highlightCode(code: string, lang: BundledLanguage, theme: 
         }
     } else {
         const shikiTheme: ThemeRegistrationRaw = {
-            name: theme.name || themeName,
+            name: themeName,
             type: theme.type,
             colors: theme.colors,
             tokenColors: theme.tokenColors,
-            settings: theme.settings || [],
-            ...(theme.semanticHighlighting !== undefined && { semanticHighlighting: theme.semanticHighlighting }),
-            ...(theme.semanticTokenColors !== undefined && { semanticTokenColors: theme.semanticTokenColors }),
+            settings: theme.settings ?? [],
+            semanticHighlighting: theme.semanticHighlighting,
+            semanticTokenColors: theme.semanticTokenColors,
         };
 
         if (!highlighter.getLoadedThemes().includes(themeName)) {

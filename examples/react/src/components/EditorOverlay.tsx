@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { BundledLanguage } from 'shiki';
 import './EditorOverlay.css';
 
@@ -40,12 +40,9 @@ export function EditorOverlay({ code: initialCode, language: initialLanguage, fi
     const [fileName, setFileName] = useState(initialFileName);
     const [highlightLines, setHighlightLines] = useState(initialHighlightLines);
 
-    useEffect(() => {
-        setCode(initialCode);
-        setLanguage(initialLanguage);
-        setFileName(initialFileName);
-        setHighlightLines(initialHighlightLines);
-    }, [initialCode, initialLanguage, initialFileName, initialHighlightLines]);
+
+    const stateRef = useRef({ code, language, fileName, highlightLines });
+    stateRef.current = { code, language, fileName, highlightLines };
 
     useEffect(() => {
         if (textareaRef.current) {
@@ -54,17 +51,17 @@ export function EditorOverlay({ code: initialCode, language: initialLanguage, fi
         }
     }, []);
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-                onChange({ code, language, fileName, highlightLines });
-                onClose();
-            }
-        };
+    const handleClickOutside = useCallback((e: MouseEvent) => {
+        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+            onChange(stateRef.current);
+            onClose();
+        }
+    }, [onChange, onClose]);
 
+    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [onClose, code, language, fileName, highlightLines, onChange]);
+    }, [handleClickOutside]);
 
     return (
         <div
