@@ -174,7 +174,7 @@ function App() {
                         />
                     )}
 
-                    {columns.length < 3 && (
+                    {columns.length < 3 && activePaneIndex === null && (
                         <button
                             onClick={addColumn}
                             className="btn-add-pane-floating"

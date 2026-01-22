@@ -40,6 +40,9 @@ export function EditorOverlay({ code: initialCode, language: initialLanguage, fi
     const [fileName, setFileName] = useState(initialFileName);
     const [highlightLines, setHighlightLines] = useState(initialHighlightLines);
 
+    // Check if there's enough space above for the header bar (window header is ~52px)
+    const headerInside = rect.top < 52;
+
 
     const stateRef = useRef({ code, language, fileName, highlightLines });
     stateRef.current = { code, language, fileName, highlightLines };
@@ -74,7 +77,7 @@ export function EditorOverlay({ code: initialCode, language: initialLanguage, fi
                 height: rect.height,
             }}
         >
-            <div className="editor-header-bar">
+            <div className={`editor-header-bar ${headerInside ? 'header-inside' : ''}`}>
                 <div className="header-group">
                     <input
                         type="text"
@@ -103,6 +106,7 @@ export function EditorOverlay({ code: initialCode, language: initialLanguage, fi
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                     className="editor-textarea"
+                    style={headerInside ? { paddingTop: '60px' } : undefined}
                     spellCheck={false}
                 />
             </div>

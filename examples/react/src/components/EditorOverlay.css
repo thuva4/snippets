@@ -5,7 +5,7 @@
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(2px);
     border-radius: 8px;
-    z-index: 100;
+    z-index: 200;
     box-shadow: 0 0 0 2px #8b5cf6;
     animation: fadeIn 0.15s ease-out;
 }
@@ -64,6 +64,16 @@
     left: 0;
     right: 0;
     pointer-events: auto;
+    z-index: 10;
+}
+
+.editor-header-bar.header-inside {
+    top: 0;
+    background: rgba(30, 30, 30, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    z-index: 10;
 }
 
 .header-group {
